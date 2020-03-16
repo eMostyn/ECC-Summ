@@ -57,3 +57,42 @@ def repetitionDecoder(v):
         return [1]
     else:
         return [0]
+
+def message(a):
+    msg = []
+    l = len(a)
+    found = False
+    r = 2
+    while(found == False):
+        num = 2**r - 2*r -1
+        if num >= l:
+            found = True
+        else:
+            r += 1
+    k = 2**r - r -1
+    msg.extend(decimalToVector(l,r))
+    msg.extend(a)
+    while(len(msg)< k):
+        msg.append(0)
+    return msg
+         
+
+def hammingEncoder(m):
+    r = 2
+    while 2**r -r - 1 != len(m):
+        r += 1
+    genMatrix = hammingGeneratorMatrix(r)
+    result = []
+    for i in range(0,len(genMatrix[0])):
+        num = 0
+        for j in range(0,len(m)):
+            num = (num + (m[j] * genMatrix[j][i])%2)
+        result.append(num)
+            
+    return result
+def hammingDecoder(u):
+    return []
+def messageFromCodeword(c):
+    return []
+def dataFromMessage(m):
+    return []
