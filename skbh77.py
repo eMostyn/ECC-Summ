@@ -144,18 +144,19 @@ def binaryToDecimal(v):
             v = v[:-1]
     return total
 def messageFromCodeword(c):
+    cWord = c.copy()
     #Find r and see if codeword is suitable
     r = 2
-    while (2**r - 1 < len(c)):
+    while (2**r - 1 < len(cWord)):
         r += 1
-    if 2**r - 1 != len(c):
+    if 2**r - 1 != len(cWord):
         return []
     i = 2**(r-1)
     #Delete the values at powers 2 indexes starting from the largest
     while i >=1:
-        del c[i-1]
+        del cWord[i-1]
         i = i//2
-    return c
+    return cWord
 
 def dataFromMessage(m):
     #Find r and if the message is suitable
